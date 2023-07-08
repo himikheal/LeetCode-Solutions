@@ -1,0 +1,24 @@
+class Solution(object):
+    def isPalindrome(self, s):
+        """
+        :type s: str
+        :rtype: bool
+        """
+        odd = True
+        s = "".join(c for c in s if c.isalnum())
+        s = s.lower()
+        
+        if(len(s) % 2 == 0):
+            odd = False
+        l = len(s)
+        if odd:
+            l // 2
+            s = s[:(l // 2)] + s[((l // 2)+1):]
+
+        s1 = s[:(l // 2)]
+        s2 = s[((l // 2)):][::-1]
+
+        if(s1 == s2):
+            return True
+        else:
+            return False
