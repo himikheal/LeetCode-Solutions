@@ -1,0 +1,52 @@
+class MyQueue(object):
+
+    def __init__(self):
+        self.s1 = []
+        self.s2 = []
+        self.p = None
+
+    # O(1)
+    def push(self, x):
+        """
+        :type x: int
+        :rtype: None
+        """
+        if len(self.s1) == 0:
+            self.p = x
+        self.s1.append(x)
+
+    # Amortized O(1)
+    def pop(self):
+        """
+        :rtype: int
+        """
+        if len(self.s2) == 0:
+            while len(self.s1) != 0:
+                self.s2.append(self.s1.pop(len(self.s1)-1))
+        return self.s2.pop(len(self.s2)-1) 
+        
+
+    def peek(self):
+        """
+        :rtype: int
+        """
+        if len(self.s2) == 0:
+            return self.p
+        else:
+            return self.s2[len(self.s2)-1]
+        
+
+    def empty(self):
+        """
+        :rtype: bool
+        """
+        return len(self.s1) == 0 and len(self.s2) == 0
+        
+
+
+# Your MyQueue object will be instantiated and called as such:
+# obj = MyQueue()
+# obj.push(x)
+# param_2 = obj.pop()
+# param_3 = obj.peek()
+# param_4 = obj.empty()
