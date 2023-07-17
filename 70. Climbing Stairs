@@ -1,0 +1,18 @@
+import math
+
+class Solution(object):
+    def climbStairs(self, n):
+        """
+        :type n: int
+        :rtype: int
+        """
+        ways = 0
+        r = 0
+        while n >= r:
+            nCr = math.factorial(n) / (math.factorial(r) * math.factorial(n-r))
+            
+            ways = ways + nCr
+            n = n - 1
+            r = r + 1
+
+        return ways
