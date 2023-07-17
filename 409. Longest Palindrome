@@ -1,0 +1,27 @@
+class Solution(object):
+    def longestPalindrome(self, s):
+        """
+        :type s: str
+        :rtype: int
+        """
+        hasOdd = False
+        chars = {}
+        length = 0
+        for c in s:
+            cNum = chars.get(c)
+            if not cNum:
+                chars[c] = 1
+            else:
+                chars[c] = cNum + 1
+        for key in chars.keys():
+            count = chars.get(key)
+            if count % 2 == 1:
+                hasOdd = True
+                length = length + count - 1
+            else:
+                length = length + count
+            
+        if hasOdd:
+            length = length + 1
+
+        return length
