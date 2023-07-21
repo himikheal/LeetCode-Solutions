@@ -1,0 +1,35 @@
+class Solution(object):
+    def majorityElement(self, nums):
+        """
+        :type nums: List[int]
+        :rtype: int
+        """
+        #Boyer-Moore Majority Vote Algorithm - O(N) time complexity
+        e = None
+        c = 0
+        for i in nums:
+            if c == 0:
+                e = i
+                c = c+1
+            else:
+                if i == e:
+                    c = c+1
+                else:
+                    c = c-1
+        return e
+    
+    # OLD
+    #def majorityElement(self, nums):
+    #    """
+    #    :type nums: List[int]
+    #    :rtype: int
+    #    """
+    #    nums2 = list(nums)
+    #    
+    #    arr = filter(lambda x: self.isMajority(nums, x), nums2)
+    #    print arr
+    #    return arr[0]
+    #
+    #def isMajority(self, nums, x):
+    #    n = len(nums) // 2
+    #    return nums.count(x) > n
