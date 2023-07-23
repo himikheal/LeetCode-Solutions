@@ -1,0 +1,72 @@
+class Solution(object):
+    def addBinary(self, a, b):
+        """
+        :type a: str
+        :type b: str
+        :rtype: str
+        """
+        
+        numA = 0
+        expA = len(a) - 1
+        while True:
+            if a[0] == "1":
+                numA = numA + (2 ** expA)
+            if expA == 0:
+                break
+            expA = expA - 1
+            a = a[1:]
+        
+        numB = 0
+        expB = len(b) - 1
+        while True:
+            if b[0] == "1":
+                numB = numB + (2 ** expB)
+            if expB == 0:
+                break
+            expB = expB - 1
+            b = b[1:]
+        
+        n = numA + numB
+        exp = 0
+        while 2 ** exp <= n:
+            exp = exp + 1
+        exp = exp - 1
+        
+        binN = ""
+        while exp >= 0:
+            if n >= 2 ** exp:
+                binN = binN + "1"
+                n = n - (2 ** exp)
+            else:
+                binN = binN + "0"
+            exp = exp - 1
+        
+        if binN == "":
+            return "0"
+        return binN
+
+        # WIP
+        #num = ""
+        #carry = False
+        #while a and b or carry:
+        #    dA = a[-1]
+        #    dB = b[-1]
+        #    if a == "1" and b == "1":
+        #        if carry:
+        #            carry = True
+        #            dC = "1"
+        #        else:
+        #            carry = True
+        #            dC = "0"
+        #    elif a == "0" and b == "0":
+        #        if carry:
+        #            carry = 
+        #        else:
+        #            carry = False
+        #            dC = "0"
+        #    else:
+        #        if carry:
+        #
+        #        else:
+        #            carry = False
+        #            dC = "1"
