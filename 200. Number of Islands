@@ -1,0 +1,29 @@
+class Solution(object):
+    def numIslands(self, grid):
+        """
+        :type grid: List[List[str]]
+        :rtype: int
+        """
+        searched = [[False] * len(grid[0]) for _ in range(len(grid))]
+        def dfs(i, j):
+            if searched[i][j] == True or grid[i][j] == "0":
+                return
+            searched[i][j] = True
+
+            if j != 0:
+                dfs(i, j-1)
+            if j != len(grid[0]) - 1:
+                dfs(i, j+1)
+            if i != 0:
+                dfs(i-1, j)
+            if i != len(grid) - 1:
+                dfs(i+1, j)
+            return
+        
+        islands = 0
+        for i in range(len(grid)):
+            for j in range(len(grid[0])):
+                if grid[i][j] == "1" and searched[i][j] == False:
+                    islands += 1
+                    dfs(i, j)
+        return islands
