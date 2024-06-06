@@ -1,0 +1,22 @@
+class Solution(object):
+    def insert(self, intervals, newInterval):
+        """
+        :type intervals: List[List[int]]
+        :type newInterval: List[int]
+        :rtype: List[List[int]]
+        """
+        intervals.append(newInterval)
+        intervals = sorted(intervals, key = lambda x: x[0])
+        
+        print(intervals)
+        result = []
+        # iterate through all sorted intervals
+        for item in intervals:
+            # if result is not empty and the next item starts before the last added interval ends
+            if result and result[-1][1] >= item[0]:
+                result[-1][1] = max(result[-1][1], item[1])
+            # add to result
+            else:
+                result.append(item)
+        return result
+                
