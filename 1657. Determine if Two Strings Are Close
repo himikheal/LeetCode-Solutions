@@ -1,0 +1,23 @@
+class Solution(object):
+    def closeStrings(self, word1, word2):
+        """
+        :type word1: str
+        :type word2: str
+        :rtype: bool
+        """
+        w1d = {}
+        w2d = {}
+        for c in word1:
+            if c in w1d.keys():
+                w1d[c] += 1
+            else:
+                w1d[c] = 1
+        for c in word2:
+            if c in w2d.keys():
+                w2d[c] += 1
+            else:
+                w2d[c] = 1
+        if sorted(list(w1d.values())) == sorted(list(w2d.values())) and sorted(list(w1d.keys())) == sorted(list(w2d.keys())):
+            return True
+        else:
+            return False
