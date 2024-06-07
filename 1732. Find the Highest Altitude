@@ -1,0 +1,13 @@
+class Solution(object):
+    def largestAltitude(self, gain):
+        """
+        :type gain: List[int]
+        :rtype: int
+        """
+        maxAlt = 0
+        current = 0
+        for dist in gain:
+            current += dist
+            maxAlt = max(maxAlt, current)
+
+        return maxAlt
