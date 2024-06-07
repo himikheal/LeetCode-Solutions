@@ -1,0 +1,30 @@
+class Solution(object):
+    def minSubArrayLen(self, target, nums):
+        """
+        :type target: int
+        :type nums: List[int]
+        :rtype: int
+        """
+        l = 0
+        r = 0
+        currSum = 0
+        minCount = float('inf')
+        met = False
+        # iterate over all numbers
+        for i, n in enumerate(nums):
+            print(str(i) + ',' + str(n))
+            # add new value
+            currSum += n
+            # check that current is > target
+            if currSum >= target:
+                met = True
+                # minimize the left side of window
+                while currSum - nums[l] >= target:
+                    currSum -= nums[l]
+                    l += 1
+            r += 1
+            if(currSum >= target):
+                minCount = min(minCount, r-l)
+        if not met:
+            return 0
+        return minCount
