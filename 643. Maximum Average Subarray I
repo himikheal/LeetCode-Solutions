@@ -1,0 +1,38 @@
+class Solution(object):
+    def findMaxAverage(self, nums, k):
+        """
+        :type nums: List[int]
+        :type k: int
+        :rtype: float
+        """
+        maxAvg = float('-inf')
+        count = 0.0
+        currentAvg = 0
+        lastNum = 0
+
+        if k == len(nums):
+            summ = 0.0
+            for n in nums:
+                summ += n
+            return summ / len(nums)
+
+        # iterate through all numbers
+        for n in nums:
+            # if count = k
+            if count == k:
+                # we take new number, remove last number
+                currentAvg += n
+                currentAvg -= nums[lastNum]
+                # iterate lastNum only if window is of size k
+                lastNum += 1
+            # otherwise, increase window size
+            else:
+                # take new number
+                currentAvg += n
+                count += 1
+            if count == k:
+                # check if its a new maximum
+                maxAvg = max(maxAvg, currentAvg/count)
+            
+            
+        return maxAvg
