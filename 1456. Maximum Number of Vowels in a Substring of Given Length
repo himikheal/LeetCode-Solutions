@@ -1,0 +1,34 @@
+class Solution(object):
+    def maxVowels(self, s, k):
+        """
+        :type s: str
+        :type k: int
+        :rtype: int
+        """
+
+        vowels = 0
+        if len(s) <= k:
+            for c in s:
+                if c in ['a','e','i','o','u']:
+                    vowels += 1
+            return vowels
+
+        maxV = 0
+        size = 0
+        for i in range(len(s)):
+            # check if window size is 3 or less
+            # increment window size if less
+            if size < k:
+                size += 1
+            # check if character found is a vowel
+            if s[i] in ['a','e','i','o','u']:
+                #increment vowels by 1
+                vowels += 1
+            if size == k and i >= k:
+                # remove left most
+                # check if its a vowel
+                if s[i-k] in ['a','e','i','o','u']:
+                    # remove 1 from count
+                    vowels -= 1
+            maxV = max(maxV, vowels)
+        return maxV
