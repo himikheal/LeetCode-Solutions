@@ -1,0 +1,21 @@
+class Solution(object):
+    def maxArea(self, height):
+        """
+        :type height: List[int]
+        :rtype: int
+        """
+        # start with pointers at edges
+        l = 0
+        r = len(height)-1
+        maxWater = 0
+        while r > l:
+            # check current water area
+            maxWater = max(maxWater, (r-l) * min(height[l], height[r]))
+            # decide which pointer to move based on smaller pointer
+            if height[l] >= height[r]:
+                r -= 1
+            else:
+                l += 1
+        
+        return maxWater
+        
